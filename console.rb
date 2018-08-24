@@ -15,4 +15,9 @@ aerobics.add_to_db()
 
 p aerobics.show_info()
 
-aerobics.delete()
+aerobics.name = "Spin Class"
+aerobics.capacity = 30
+
+aerobics.update()
+
+p GymClass.show_info_by_id(5)

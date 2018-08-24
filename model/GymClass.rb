@@ -44,4 +44,20 @@ class GymClass
     SqlRun.sql_run(sql_string, values)
   end
 
+  def self.show_info_by_id(id)
+    sql_string = "SELECT * FROM gym_classes
+                  WHERE id = $1"
+    values = [id]
+    sql_return = SqlRun.sql_run(sql_string, values)
+    return sql_return[0]
+  end
+
+  def update()
+    sql_string = "UPDATE gym_classes
+                  SET (name, capacity)
+                  = ($1,$2) WHERE id = $3"
+    values = [@name, @capacity, @id]
+    SqlRun.sql_run(sql_string, values)
+  end
+
 end
