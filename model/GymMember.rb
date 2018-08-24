@@ -5,8 +5,8 @@ attr_accessor('first_name', 'last_name', 'age', 'email', 'contact_number')
     @first_name = member_details['first_name']
     @last_name = member_details['last_name']
     @age = member_details['age'].to_i()
-    @email = member_details['email']
-    @contact_number = member_details['contact_number']
+    @email = member_details['email'] || ""
+    @contact_number = member_details['contact_number'] || ""
     @id = member_details['id'].to_i() if member_details['id']
   end
 
