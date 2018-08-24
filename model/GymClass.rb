@@ -24,4 +24,24 @@ class GymClass
     return sql_return[0]
   end
 
+  def self.view_all()
+    sql_string = "SELECT * FROM gym_classes"
+    sql_return = SqlRun.sql_run(sql_string)
+    return sql_return
+  end
+
+  def delete()
+    sql_string = "DELETE FROM gym_classes
+                  WHERE id = $1"
+    values = [@id]
+    SqlRun.sql_run(sql_string, values)
+  end
+
+  def self.delete_by_id(id)
+    sql_string = "DELETE FROM gym_classes
+                  WHERE id = $1"
+    values = [id]
+    SqlRun.sql_run(sql_string, values)
+  end
+
 end

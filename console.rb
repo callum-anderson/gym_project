@@ -9,8 +9,10 @@ require_relative('model/GymClass.rb')
 #
 # p johndoe.show_info()
 
-# aerobics = GymClass.new({'name' => 'Aerobics'})
-#
-# aerobics.add_to_db()
-#
-# p aerobics.show_info()
+aerobics = GymClass.new({'name' => 'Aerobics'})
+
+aerobics.add_to_db()
+
+p aerobics.show_info()
+
+aerobics.delete()
