@@ -24,10 +24,12 @@ class GymClass
     return sql_return[0]
   end
 
-  def self.view_all()
-    sql_string = "SELECT * FROM gym_classes"
-    sql_return = SqlRun.sql_run(sql_string)
-    return sql_return
+  def update()
+    sql_string = "UPDATE gym_classes
+                  SET (name, capacity)
+                  = ($1,$2) WHERE id = $3"
+    values = [@name, @capacity, @id]
+    SqlRun.sql_run(sql_string, values)
   end
 
   def delete()
@@ -37,29 +39,28 @@ class GymClass
     SqlRun.sql_run(sql_string, values)
   end
 
-  def self.delete_by_id(id)
-    sql_string = "DELETE FROM gym_classes
-                  WHERE id = $1"
-    values = [id]
-    SqlRun.sql_run(sql_string, values)
-  end
-
-  def self.show_info_by_id(id)
+  def self.object_from_db(id)
     sql_string = "SELECT * FROM gym_classes
                   WHERE id = $1"
     values = [id]
-    sql_return = SqlRun.sql_run(sql_string, values)
-    return sql_return[0]
+    sql_return = GymClass.new(SqlRun.sql_run(sql_string, values)[0])
+    return sql_return
   end
 
-  def update()
-    sql_string = "UPDATE gym_classes
-                  SET (name, capacity)
-                  = ($1,$2) WHERE id = $3"
-    values = [@name, @capacity, @id]
-    SqlRun.sql_run(sql_string, values)
+  def self.view_all()
+    sql_string = "SELECT * FROM gym_classes"
+    sql_return = SqlRun.sql_run(sql_string)
+    return sql_return
   end
 
+  def self.delete_by_id(id)
+    self.object_from_db(id).delete()
+  end
+
+  def self.show_info_by_id(id)
+    self.object_from_db(id).show_info()
+  end
+  
   def self.add_member_by_id(gym_class_id, member_id)
     GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).add_to_db()
   end
@@ -67,6 +68,16 @@ class GymClass
   def self.remove_member_by_id(gym_class_id, member_id)
     booking_id = GymBooking.find_booking_id(gym_class_id, member_id)
     GymBooking.delete_by_id(booking_id)
+  end
+
+  def self.show_all()
+    sql_string = "SELECT m.first_name, m.last_name, c.name
+                  FROM members AS m INNER JOIN gym_bookings AS b
+                  ON m.id = b.member
+                  INNER JOIN gym_classes AS c
+                  ON b.gym_class = c.id"
+    sql_return = SqlRun.sql_run(sql_string)
+    return sql_return
   end
 
 end

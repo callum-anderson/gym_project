@@ -7,10 +7,18 @@ require_relative('model/GymBooking.rb')
 # johndoe = GymMember.new({'first_name' => 'John', 'last_name' => 'Doe',
 #                 'age' => 28 })
 # johndoe.add_to_db()
-#
+
+# melsykes = GymMember.new({'first_name' => 'Mel', 'last_name' => 'Sykes',
+#                 'age' => 40 })
+# melsykes.add_to_db()
+
 # p johndoe.show_info()
 
 # aerobics = GymClass.new({'name' => 'Aerobics'})
+#
+# aerobics.add_to_db()
+
+# aerobics = GymClass.new({'name' => 'Spin Class'})
 #
 # aerobics.add_to_db()
 #
@@ -27,4 +35,8 @@ require_relative('model/GymBooking.rb')
 # gymclass.add_to_db()
 # p gymclass.id
 
-GymClass.remove_member_by_id(7,6)
+# GymClass.remove_member_by_id(7,6)
+
+# GymClass.add_member_by_id(11, 10)
+
+# p GymBooking.delete_by_id(6)

@@ -25,31 +25,10 @@ attr_accessor('first_name', 'last_name', 'age', 'email', 'contact_number')
     SqlRun.sql_run(sql_string, values)
   end
 
-  def self.delete_by_id(id)
-    sql_string = "DELETE FROM members
-                  WHERE id = $1"
-    values = [id]
-    SqlRun.sql_run(sql_string, values)
-  end
-
-  def self.view_all()
-    sql_string = "SELECT * FROM members"
-    sql_return = SqlRun.sql_run(sql_string)
-    return sql_return
-  end
-
   def show_info()
     sql_string = "SELECT * FROM members
                   WHERE id = $1"
     values = [@id]
-    sql_return = SqlRun.sql_run(sql_string, values)
-    return sql_return[0]
-  end
-
-  def self.show_info_by_id(id)
-    sql_string = "SELECT * FROM members
-                  WHERE id = $1"
-    values = [id]
     sql_return = SqlRun.sql_run(sql_string, values)
     return sql_return[0]
   end
@@ -60,6 +39,28 @@ attr_accessor('first_name', 'last_name', 'age', 'email', 'contact_number')
                   = ($1,$2,$3,$4,$5) WHERE id = $6"
     values = [@first_name, @last_name, @age, @email, @contact_number, @id]
     SqlRun.sql_run(sql_string, values)
+  end
+
+  def self.object_from_db(id)
+    sql_string = "SELECT * FROM members
+                  WHERE id = $1"
+    values = [id]
+    sql_return = GymMember.new(SqlRun.sql_run(sql_string, values)[0])
+    return sql_return
+  end
+
+  def self.delete_by_id(id)
+    self.object_from_db(id).delete()
+  end
+
+  def self.view_all()
+    sql_string = "SELECT * FROM members"
+    sql_return = SqlRun.sql_run(sql_string)
+    return sql_return
+  end
+
+  def self.show_info_by_id(id)
+    self.object_from_db(id).show_info()
   end
 
 end
