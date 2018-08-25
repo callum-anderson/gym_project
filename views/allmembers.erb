@@ -1,0 +1,10 @@
+<p>All members: </p>
+
+<% @all_members.each do |m| %>
+  <ul>
+    <li>Name: <%= m.first_name %> <%= m.last_name %></li>
+    <li>Age: <%= m.age %></li>
+    <li>Contact: <%= m.contact_number %></li>
+    <li>Email: <%= m.email %></li>
+  </ul>
+<% end %>

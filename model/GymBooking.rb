@@ -40,4 +40,14 @@ class GymBooking
     return SqlRun.sql_run(sql_string, values)[0]['id'].to_i()
   end
 
+  def self.show_all_bookings()
+    sql_string = "SELECT m.first_name, m.last_name, c.name
+                  FROM members AS m INNER JOIN gym_bookings AS b
+                  ON m.id = b.member
+                  INNER JOIN gym_classes AS c
+                  ON b.gym_class = c.id"
+    sql_return = SqlRun.sql_run(sql_string)
+    return sql_return
+  end
+
 end

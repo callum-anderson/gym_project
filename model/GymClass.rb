@@ -49,7 +49,7 @@ class GymClass
 
   def self.view_all()
     sql_string = "SELECT * FROM gym_classes"
-    sql_return = SqlRun.sql_run(sql_string)
+    sql_return = SqlRun.sql_run(sql_string).map{|c|GymClass.new(c)}
     return sql_return
   end
 
@@ -60,24 +60,14 @@ class GymClass
   def self.show_info_by_id(id)
     self.object_from_db(id).show_info()
   end
-  
+
   def self.add_member_by_id(gym_class_id, member_id)
     GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).add_to_db()
   end
 
   def self.remove_member_by_id(gym_class_id, member_id)
-    booking_id = GymBooking.find_booking_id(gym_class_id, member_id)
+    GymBooking.find_booking_id(gym_class_id, member_id)
     GymBooking.delete_by_id(booking_id)
-  end
-
-  def self.show_all()
-    sql_string = "SELECT m.first_name, m.last_name, c.name
-                  FROM members AS m INNER JOIN gym_bookings AS b
-                  ON m.id = b.member
-                  INNER JOIN gym_classes AS c
-                  ON b.gym_class = c.id"
-    sql_return = SqlRun.sql_run(sql_string)
-    return sql_return
   end
 
 end

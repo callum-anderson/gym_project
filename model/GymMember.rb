@@ -55,8 +55,9 @@ attr_accessor('first_name', 'last_name', 'age', 'email', 'contact_number')
 
   def self.view_all()
     sql_string = "SELECT * FROM members"
-    sql_return = SqlRun.sql_run(sql_string)
-    return sql_return
+    sql_return = SqlRun.sql_run(sql_string).map{|m|GymMember.new(m)}
+
+    # return sql_return.map{|m|[m.first_name,m.last_name,m.age.to_i,m.contact_number,m.email]}
   end
 
   def self.show_info_by_id(id)
