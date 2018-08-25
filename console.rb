@@ -23,6 +23,8 @@ require_relative('model/GymBooking.rb')
 #
 # p GymClass.show_info_by_id(5)
 
-gymclass = GymBooking.new({'gym_class' => 5, 'member' => 4})
-gymclass.add_to_db()
-p gymclass.id
+# gymclass = GymBooking.new({'gym_class' => 5, 'member' => 4})
+# gymclass.add_to_db()
+# p gymclass.id
+
+GymClass.remove_member_by_id(7,6)

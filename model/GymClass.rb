@@ -60,4 +60,13 @@ class GymClass
     SqlRun.sql_run(sql_string, values)
   end
 
+  def self.add_member_by_id(gym_class_id, member_id)
+    GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).add_to_db()
+  end
+
+  def self.remove_member_by_id(gym_class_id, member_id)
+    booking_id = GymBooking.find_booking_id(gym_class_id, member_id)
+    GymBooking.delete_by_id(booking_id)
+  end
+
 end
