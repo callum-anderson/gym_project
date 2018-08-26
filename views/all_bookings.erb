@@ -2,8 +2,7 @@
 
 <% @all_bookings.each do |m| %>
   <ul>
-    <li>Name: <%= m['first_name'] %> </li>
-    <li>Name: <%= m['last_name'] %> </li>
+    <li>Name: <%= m['first_name'] %> <%= m['last_name'] %></li>
     <li>Class: <%= m['name'] %></li>
   </ul>
 <% end %>

@@ -1,4 +1,6 @@
-<p>All members: </p>
+<p><%= @member.first_name %> <%= @member.last_name %> added to
+<%= GymClass.show_info_by_id(@gymclass_id)['name'] %>.
+</p>
 
 <% @all_members.each do |m| %>
   <form action="/update_member/<%= m.id %>" method="post">

@@ -13,6 +13,7 @@ end
 
 get '/allmembers' do
   @all_members = GymMember.view_all()
+  @all_classes = GymClass.view_all()
   erb(:all_members)
 end
 
@@ -72,4 +73,13 @@ post '/delete_class/:id' do
   @gym_class.delete()
   @all_classes = GymClass.view_all()
   erb(:class_deleted)
+end
+
+post '/add_to_class' do
+  @member = GymMember.new(params)
+  @gymclass_id = params['gym_class']
+  GymClass.add_member_by_id(@gymclass_id, @member.id)
+  @all_members = GymMember.view_all()
+  @all_classes = GymClass.view_all()
+  erb(:member_added_to_class)
 end
