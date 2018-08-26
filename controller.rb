@@ -35,3 +35,15 @@ post '/addmember' do
   @member.add_to_db()
   erb(:member_added)
 end
+
+post '/update_member/:id' do
+  @member = GymMember.new(params)
+  @member.update()
+  erb(:member_updated)
+end
+
+post '/delete_member/:id' do
+  @member = GymMember.new(params)
+  @member.delete()
+  erb(:member_deleted)
+end
