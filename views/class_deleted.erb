@@ -1,4 +1,8 @@
-<p>All classes: </p>
+<p>Class deleted:</p>
+<ul>
+<li>Name: <%= @gym_class.name %></li>
+<li>Capacity: <%= @gym_class.capacity %></li>
+</ul>
 
 <% @all_classes.each do |c| %>
   <form action="/update_class/<%= c.id %>" method="post">
