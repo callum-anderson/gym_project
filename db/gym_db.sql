@@ -17,6 +17,6 @@ CREATE TABLE members(
 );
 CREATE TABLE gym_bookings(
   id SERIAL4 PRIMARY KEY,
-  gym_class INT4 REFERENCES gym_classes(id),
-  member INT4 REFERENCES members(id)
+  gym_class INT4 REFERENCES gym_classes(id) ON DELETE CASCADE,
+  member INT4 REFERENCES members(id) ON DELETE CASCADE
 );

@@ -13,15 +13,25 @@ end
 
 get '/allmembers' do
   @all_members = GymMember.view_all()
-  erb(:allmembers)
+  erb(:all_members)
 end
 
 get '/allclasses' do
   @all_classes = GymClass.view_all()
-  erb(:allclasses)
+  erb(:all_classes)
 end
 
 get '/allbookings' do
   @all_bookings = GymBooking.show_all_bookings()
-  erb(:allbookings)
+  erb(:all_bookings)
+end
+
+get '/addmember' do
+  erb(:add_member)
+end
+
+post '/addmember' do
+  @member = GymMember.new(params)
+  @member.add_to_db()
+  erb(:member_added)
 end
