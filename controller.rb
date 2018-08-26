@@ -30,10 +30,20 @@ get '/addmember' do
   erb(:add_member)
 end
 
+get '/addgymclass' do
+  erb(:add_gymclass)
+end
+
 post '/addmember' do
   @member = GymMember.new(params)
   @member.add_to_db()
   erb(:member_added)
+end
+
+post '/addgymclass' do
+  @gym_class = GymClass.new(params)
+  @gym_class.add_to_db()
+  erb(:gymclass_added)
 end
 
 post '/update_member/:id' do
