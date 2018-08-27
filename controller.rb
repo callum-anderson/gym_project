@@ -11,29 +11,29 @@ get '/' do
   erb(:index)
 end
 
-get '/allmembers' do
+get '/gym_member' do
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb(:all_members)
+  erb :'gym_member/index'
 end
 
-get '/allclasses' do
+get '/gym_class' do
   @all_classes = GymClass.view_all()
   @all_members = GymMember.view_all()
-  erb(:all_classes)
+  erb :'gym_class/index'
 end
 
-get '/allbookings' do
+get '/gym_booking' do
   @all_bookings = GymBooking.show_all_bookings()
-  erb(:all_bookings)
+  erb :'gym_booking/index'
 end
 
-get '/addmember' do
-  erb(:add_member)
+get '/gym_member/new' do
+  erb :'gym_member/new'
 end
 
-get '/addgymclass' do
-  erb(:add_gymclass)
+get '/gym_class/new' do
+  erb :'gym_class/new'
 end
 
 post '/addmember' do
