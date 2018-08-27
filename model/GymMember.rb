@@ -10,7 +10,7 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     @id = member_details['id'].to_i() if member_details['id']
   end
 
-  def add_to_db()
+  def save()
     sql_string = "INSERT INTO members (first_name, last_name, age, contact_number, email)
                   VALUES ($1,$2,$3,$4,$5) RETURNING id"
     values = [@first_name, @last_name, @age, @contact_number, @email]

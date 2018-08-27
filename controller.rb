@@ -38,13 +38,13 @@ end
 
 post '/addmember' do
   @member = GymMember.new(params)
-  @member.add_to_db()
+  @member.save()
   erb(:member_added)
 end
 
 post '/addgymclass' do
   @gym_class = GymClass.new(params)
-  @gym_class.add_to_db()
+  @gym_class.save()
   erb(:gymclass_added)
 end
 

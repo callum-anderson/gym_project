@@ -8,7 +8,7 @@ class GymClass
     @id = class_details['id'] if class_details['id']
   end
 
-  def add_to_db()
+  def save()
     sql_string = "INSERT INTO gym_classes (name, capacity)
                   VALUES ($1, $2) RETURNING id"
     values = [@name, @capacity]

@@ -6,7 +6,7 @@ class GymBooking
     @id = booking_details['id'].to_i() if booking_details['id']
   end
 
-  def add_to_db()
+  def save()
     sql_string = "INSERT INTO gym_bookings (gym_class_id, member_id)
                   VALUES ($1, $2) RETURNING id"
     values = [@gym_class, @member]
