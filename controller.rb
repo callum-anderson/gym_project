@@ -19,6 +19,7 @@ end
 
 get '/allclasses' do
   @all_classes = GymClass.view_all()
+  @all_members = GymMember.view_all()
   erb(:all_classes)
 end
 
@@ -82,6 +83,15 @@ post '/add_to_class' do
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
   erb(:member_added_to_class)
+end
+
+post '/add_member_to_class' do
+  @gymclass_booking = params
+  @member = GymMember.object_from_db(params['member'])
+  GymClass.add_member_by_id(@gymclass_booking['id'], @member.id)
+  @all_members = GymMember.view_all()
+  @all_classes = GymClass.view_all()
+  erb(:class_member_added)
 end
 
 post '/delete_booking/:id' do

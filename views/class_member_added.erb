@@ -1,4 +1,4 @@
-<p>All classes: </p>
+<p><%= @member.first_name %> <%= @member.last_name %> added to <%= @gymclass_booking['name'] %>.</p>
 
 <% @all_classes.each do |c| %>
   <form action="/update_class/<%= c.id %>" method="post">
