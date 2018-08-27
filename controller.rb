@@ -83,3 +83,12 @@ post '/add_to_class' do
   @all_classes = GymClass.view_all()
   erb(:member_added_to_class)
 end
+
+post '/delete_booking/:id' do
+  @booking = GymBooking.object_from_db(params['id']).delete()
+  @booking_details = {'first_name' => params['first_name'],
+                      'last_name' => params['last_name'],
+                      'name' => params['name']}
+  @all_bookings = GymBooking.show_all_bookings()
+  erb(:booking_deleted)
+end

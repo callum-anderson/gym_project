@@ -41,7 +41,7 @@ class GymBooking
   end
 
   def self.show_all_bookings()
-    sql_string = "SELECT m.first_name, m.last_name, c.name
+    sql_string = "SELECT m.first_name, m.last_name, c.name, b.id
                   FROM members AS m INNER JOIN gym_bookings AS b
                   ON m.id = b.member
                   INNER JOIN gym_classes AS c
