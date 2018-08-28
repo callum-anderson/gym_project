@@ -65,7 +65,8 @@ class GymBooking
                   FROM members AS m INNER JOIN gym_bookings AS b
                   ON m.id = b.member_id
                   INNER JOIN gym_classes AS c
-                  ON b.gym_class_id = c.id"
+                  ON b.gym_class_id = c.id
+                  ORDER BY c.name ASC"
     sql_return = SqlRun.sql_run(sql_string)
     return sql_return
   end

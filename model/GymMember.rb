@@ -54,7 +54,8 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
   end
 
   def self.view_all()
-    sql_string = "SELECT * FROM members"
+    sql_string = "SELECT * FROM members
+                  ORDER BY last_name"
     sql_return = SqlRun.sql_run(sql_string).map{|m|GymMember.new(m)}
   end
 

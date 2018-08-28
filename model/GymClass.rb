@@ -48,7 +48,8 @@ class GymClass
   end
 
   def self.view_all()
-    sql_string = "SELECT * FROM gym_classes"
+    sql_string = "SELECT * FROM gym_classes
+                  ORDER BY name"
     sql_return = SqlRun.sql_run(sql_string).map{|c|GymClass.new(c)}
     return sql_return
   end
