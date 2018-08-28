@@ -32,6 +32,7 @@
         <input type="submit" value="Delete">
       </form>
       <form action="/add_member_to_class" method="post">
+        <input hidden name="_method" value="put">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
         <input hidden name="id" value="<%= c.id %>">
@@ -40,7 +41,7 @@
           <option value="<%= m.id %>"><%= m.first_name %> <%= m.last_name %></option>
           <% end %>
         </select>
-        <input type="submit" value="Add member to class">
+        <input type="submit" value="Add member to <%= c.name %> class">
       </form>
     <% end %>
 

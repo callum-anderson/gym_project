@@ -38,6 +38,7 @@
     <input type="submit" value="Delete">
   </form>
   <form action="/add_to_class" method="post">
+    <input hidden name="_method" value="put">
     <input hidden name="first_name" value="<%= m.first_name %>">
     <input hidden name="last_name" value="<%= m.last_name %>">
     <input hidden name="age" value="<%= m.age %>">

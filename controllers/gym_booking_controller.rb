@@ -21,25 +21,23 @@ delete '/gym_booking/:id/delete' do
   erb :'gym_booking/gym_booking_deleted', :layout => :gym_booking_layout
 end
 
-post '/update_member/:id' do
+put '/update_member/:id' do
   @member = GymMember.new(params)
   @member.update()
   @all_members = GymMember.view_all()
   erb(:member_updated)
 end
 
-
-
-post '/add_to_class' do
+put '/add_to_class' do
   @member = GymMember.new(params)
   @gymclass_id = params['gym_class']
   GymClass.add_member_by_id(@gymclass_id, @member.id)
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb(:member_added_to_class)
+  erb :'gym_booking/gym_member_added_to_class'
 end
 
-post '/add_member_to_class' do
+put '/add_member_to_class' do
   @gymclass_booking = params
   @member = GymMember.object_from_db(params['member'])
   GymClass.add_member_by_id(@gymclass_booking['id'], @member.id)
