@@ -1,36 +1,3 @@
-<p><%= @member.first_name %> <%= @member.last_name %> added to
-<%= GymClass.show_info_by_id(@gymclass_id)['name'] %>.
+<p><%= @booking_details[0]['first_name'] %> <%= @booking_details[0]['last_name'] %> added to
+<%= @booking_details[0]['name'] %>.
 </p>
-
-<% @all_members.each do |m| %>
-  <form action="/update_member/<%= m.id %>" method="post">
-    First name: <input name="first_name" value="<%= m.first_name %>"><br>
-    Last name: <input name="last_name" value="<%= m.last_name %>"><br>
-    Age: <input name="age" value="<%= m.age %>"><br>
-    Contact: <input name="contact_number" value="<%= m.contact_number %>"><br>
-    Email: <input name="email" value="<%= m.email %>"><br>
-    <input type="submit" value="Update">
-  </form>
-  <form action="/delete_member/<%= m.id %>" method="post">
-    <input hidden name="first_name" value="<%= m.first_name %>">
-    <input hidden name="last_name" value="<%= m.last_name %>">
-    <input hidden name="age" value="<%= m.age %>">
-    <input hidden name="contact_number" value="<%= m.contact_number %>">
-    <input hidden name="email" value="<%= m.email %>">
-    <input type="submit" value="Delete">
-  </form>
-  <form action="/add_to_class" method="post">
-    <input hidden name="first_name" value="<%= m.first_name %>">
-    <input hidden name="last_name" value="<%= m.last_name %>">
-    <input hidden name="age" value="<%= m.age %>">
-    <input hidden name="contact_number" value="<%= m.contact_number %>">
-    <input hidden name="email" value="<%= m.email %>">
-    <input hidden name="id" value="<%= m.id %>">
-    <select name="gym_class">
-      <% @all_classes.each do |c| %>
-      <option value="<%= c.id %>"><%= c.name %></option>
-      <% end %>
-    </select>
-    <input type="submit" value="Add to class">
-  </form>
-<% end %>

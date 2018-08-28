@@ -21,27 +21,22 @@ delete '/gym_booking/:id/delete' do
   erb :'gym_booking/gym_booking_deleted', :layout => :gym_booking_layout
 end
 
-put '/update_member/:id' do
-  @member = GymMember.new(params)
-  @member.update()
-  @all_members = GymMember.view_all()
-  erb(:member_updated)
-end
-
-put '/add_to_class' do
-  @member = GymMember.new(params)
-  @gymclass_id = params['gym_class']
-  GymClass.add_member_by_id(@gymclass_id, @member.id)
+put '/gym_booking/member' do
+  new_booking = GymBooking.new({'gym_class'=> params['gym_class'],
+                                      'member'=>params['id']})
+  new_booking.save()
+  @booking_details = new_booking.show_booking_details()
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb :'gym_booking/gym_member_added_to_class'
+  erb :'gym_booking/gym_member_added_to_class', :layout => :gym_member_layout
 end
 
-put '/add_member_to_class' do
-  @gymclass_booking = params
-  @member = GymMember.object_from_db(params['member'])
-  GymClass.add_member_by_id(@gymclass_booking['id'], @member.id)
+put '/gym_booking/class' do
+  new_booking = GymBooking.new({'gym_class'=> params['id'],
+                                    'member'=>params['member']})
+  new_booking.save()
+  @booking_details = new_booking.show_booking_details()
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb(:class_member_added)
+  erb :'gym_booking/gym_member_added_to_class', :layout => :gym_class_layout
 end
