@@ -57,11 +57,12 @@ post '/update_member/:id' do
   erb(:member_updated)
 end
 
-post '/delete_member/:id' do
+post '/gym_member/:id/delete' do
   @member = GymMember.new(params)
+  @all_classes = GymClass.view_all()
   @member.delete()
   @all_members = GymMember.view_all()
-  erb(:member_deleted)
+  erb :'gym_member/gym_member_deleted', :layout => :gym_member_layout
 end
 
 post '/update_class/:id' do
@@ -71,11 +72,12 @@ post '/update_class/:id' do
   erb(:class_updated)
 end
 
-post '/delete_class/:id' do
+post '/gym_class/:id/delete' do
   @gym_class = GymClass.new(params)
   @gym_class.delete()
+  @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb(:class_deleted)
+  erb :'gym_class/gym_class_deleted', :layout => :gym_class_layout
 end
 
 post '/add_to_class' do

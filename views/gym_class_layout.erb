@@ -24,7 +24,7 @@
         Capacity: <input name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200"><br>
         <input type="submit" value="Update">
       </form>
-      <form action="/delete_class/<%= c.id %>" method="post">
+      <form action="/gym_class/<%= c.id %>/delete" method="post">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
         <input type="submit" value="Delete">

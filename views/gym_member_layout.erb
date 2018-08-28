@@ -27,7 +27,7 @@
     Email: <input name="email" value="<%= m.email %>" type="email"><br>
     <input type="submit" value="Update">
   </form>
-  <form action="/delete_member/<%= m.id %>" method="post">
+  <form action="/gym_member/<%= m.id %>/delete" method="post">
     <input hidden name="first_name" value="<%= m.first_name %>">
     <input hidden name="last_name" value="<%= m.last_name %>">
     <input hidden name="age" value="<%= m.age %>">
