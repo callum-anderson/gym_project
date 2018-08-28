@@ -1,10 +1,11 @@
 require('sinatra')
 require('sinatra/contrib/all')
-require('pry')
-require_relative('model/GymMember.rb')
-require_relative('model/GymClass.rb')
-require_relative('model/GymBooking.rb')
-also_reload('model/*')
+require('pry-byebug')
+require_relative('../model/GymMember.rb')
+require_relative('../model/GymClass.rb')
+require_relative('../model/GymBooking.rb')
+require_relative('../db/sql_runner.rb')
+also_reload('../model/*')
 
 get '/gym_member' do
   @all_members = GymMember.view_all()
@@ -19,10 +20,20 @@ end
 post '/gym_member' do
   @member = GymMember.new(params)
   @member.save()
+  @all_members = GymMember.view_all()
+  @all_classes = GymClass.view_all()
   erb :'gym_member/gym_member_added', :layout => :gym_member_layout
 end
 
-post '/gym_member/:id/delete' do
+put '/gym_member/:id' do
+  @member = GymMember.new(params)
+  @member.update()
+  @all_members = GymMember.view_all()
+  @all_classes = GymClass.view_all()
+  erb :'gym_member/gym_member_updated', :layout => :gym_member_layout
+end
+
+delete '/gym_member/:id/delete' do
   @member = GymMember.new(params)
   @all_classes = GymClass.view_all()
   @member.delete()

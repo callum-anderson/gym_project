@@ -19,12 +19,14 @@
     <hr style="margin: 2em 0; border-width: 2px;">
 
     <% @all_classes.each do |c| %>
-      <form action="/update_class/<%= c.id %>" method="post">
+      <form action="/gym_class/<%= c.id %>" method="post">
+        <input hidden name="_method" value="put">
         Class: <input name="name" value="<%= c.name %>" type="text"><br>
         Capacity: <input name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200"><br>
         <input type="submit" value="Update">
       </form>
       <form action="/gym_class/<%= c.id %>/delete" method="post">
+        <input hidden name="_method" value="delete">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
         <input type="submit" value="Delete">

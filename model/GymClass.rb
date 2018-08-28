@@ -62,7 +62,7 @@ class GymClass
   end
 
   def self.add_member_by_id(gym_class_id, member_id)
-    GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).add_to_db()
+    GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).save()
   end
 
   def self.remove_member_by_id(gym_class_id, member_id)

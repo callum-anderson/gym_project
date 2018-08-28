@@ -1,23 +1,24 @@
 require('sinatra')
 require('sinatra/contrib/all')
 require('pry')
-require_relative('model/GymMember.rb')
-require_relative('model/GymClass.rb')
-require_relative('model/GymBooking.rb')
-also_reload('model/*')
+require_relative('../model/GymMember.rb')
+require_relative('../model/GymClass.rb')
+require_relative('../model/GymBooking.rb')
+require_relative('../db/sql_runner.rb')
+also_reload('../model/*')
 
 get '/gym_booking' do
   @all_bookings = GymBooking.show_all_bookings()
   erb :'gym_booking/index', :layout => :gym_booking_layout
 end
 
-post '/delete_booking/:id' do
+delete '/gym_booking/:id/delete' do
   @booking = GymBooking.object_from_db(params['id']).delete()
   @booking_details = {'first_name' => params['first_name'],
                       'last_name' => params['last_name'],
                       'name' => params['name']}
   @all_bookings = GymBooking.show_all_bookings()
-  erb(:booking_deleted)
+  erb :'gym_booking/gym_booking_deleted', :layout => :gym_booking_layout
 end
 
 post '/update_member/:id' do
@@ -27,12 +28,7 @@ post '/update_member/:id' do
   erb(:member_updated)
 end
 
-post '/update_class/:id' do
-  @gym_class = GymClass.new(params)
-  @gym_class.update()
-  @all_classes = GymClass.view_all()
-  erb(:class_updated)
-end
+
 
 post '/add_to_class' do
   @member = GymMember.new(params)
