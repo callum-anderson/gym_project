@@ -1,12 +1,1 @@
 <p>All bookings: </p>
-
-<% @all_bookings.each do |b| %>
-  <form action="/delete_booking/<%= b['id'] %>" method="post">
-    Name: <%= b['first_name'] %> <%= b['last_name'] %><br>
-    Class: <%= b['name'] %><br>
-    <input hidden name="first_name" value="<%= b['first_name'] %>">
-    <input hidden name="last_name" value="<%= b['last_name'] %>">
-    <input hidden name="name" value="<%= b['name'] %>">
-    <input type="submit" value="Delete">
-  </form>
-<% end %>

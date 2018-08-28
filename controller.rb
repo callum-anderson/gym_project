@@ -14,18 +14,18 @@ end
 get '/gym_member' do
   @all_members = GymMember.view_all()
   @all_classes = GymClass.view_all()
-  erb :'gym_member/index'
+  erb :'gym_member/index', :layout => :gym_member_layout
 end
 
 get '/gym_class' do
   @all_classes = GymClass.view_all()
   @all_members = GymMember.view_all()
-  erb :'gym_class/index'
+  erb :'gym_class/index', :layout => :gym_class_layout
 end
 
 get '/gym_booking' do
   @all_bookings = GymBooking.show_all_bookings()
-  erb :'gym_booking/index'
+  erb :'gym_booking/index', :layout => :gym_booking_layout
 end
 
 get '/gym_member/new' do
@@ -33,16 +33,18 @@ get '/gym_member/new' do
 end
 
 get '/gym_class/new' do
+  @all_classes = GymClass.view_all()
+  @all_members = GymMember.view_all()
   erb :'gym_class/new'
 end
 
-post '/addmember' do
+post '/gym_member' do
   @member = GymMember.new(params)
   @member.save()
-  erb(:member_added)
+  erb :'gym_member/gym_member_added', :layout => :gym_member_layout
 end
 
-post '/addgymclass' do
+post '/gym_class' do
   @gym_class = GymClass.new(params)
   @gym_class.save()
   erb(:gymclass_added)

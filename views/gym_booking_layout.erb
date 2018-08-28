@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gym Project</title>
+  </head>
+  <body>
+    <h2>Welcome to Ur Gym!</h2>
+    <ul>
+      <li><a href="/gym_member">Show all members</a></li>
+      <li><a href="/gym_class">Show all classes</a></li>
+      <li><a href="/gym_booking">Show all class bookings</a></li>
+      <li><a href="/gym_member/new">Register new member</a></li>
+      <li><a href="/gym_class/new">Add new class</a></li>
+    </ul>
+
+    <%= yield %>
+
+<hr style="margin: 2em 0; border-width: 2px;">
+
+<% @all_bookings.each do |b| %>
+  <form action="/delete_booking/<%= b['id'] %>" method="post">
+    Name: <%= b['first_name'] %> <%= b['last_name'] %><br>
+    Class: <%= b['name'] %><br>
+    <input hidden name="first_name" value="<%= b['first_name'] %>">
+    <input hidden name="last_name" value="<%= b['last_name'] %>">
+    <input hidden name="name" value="<%= b['name'] %>">
+    <input type="submit" value="Delete">
+  </form>
+<% end %>
+
+</body>
+</html>
