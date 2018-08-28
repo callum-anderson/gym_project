@@ -18,7 +18,8 @@
 
     <hr style="margin: 2em 0; border-width: 2px;">
 
-<% @all_members.each do |m| %>
+<% all_members = GymMember.view_all() %>
+<% all_members.each do |m| %>
   <form action="/gym_member/<%= m.id %>" method="post">
     <input hidden name="_method" value="put">
     First name: <input name="first_name" value="<%= m.first_name %>" type="text"><br>
@@ -46,7 +47,8 @@
     <input hidden name="email" value="<%= m.email %>">
     <input hidden name="id" value="<%= m.id %>">
     <select name="gym_class">
-      <% @all_classes.each do |c| %>
+      <% all_classes = GymClass.view_all() %>
+      <% all_classes.each do |c| %>
       <option value="<%= c.id %>"><%= c.name %></option>
       <% end %>
     </select>

@@ -18,7 +18,8 @@
 
 <hr style="margin: 2em 0; border-width: 2px;">
 
-<% @all_bookings.each do |b| %>
+<% all_bookings = GymBooking.show_all_bookings() %>
+<% all_bookings.each do |b| %>
   <form action="/gym_booking/<%= b['id'] %>/delete" method="post">
     <input hidden name="_method" value="delete">
     Name: <%= b['first_name'] %> <%= b['last_name'] %><br>

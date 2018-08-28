@@ -32,6 +32,15 @@ class GymBooking
     return sql_return
   end
 
+  def exists?
+    sql_string = "SELECT * FROM gym_bookings
+                  WHERE gym_class_id = $1 AND member_id = $2"
+    values = [@gym_class, @member]
+    sql_return = SqlRun.sql_run(sql_string, values)
+    return true if sql_return.ntuples > 0
+    return false
+  end
+
   def self.object_from_db(id)
     sql_string = "SELECT * FROM gym_bookings
                   WHERE id = $1"
