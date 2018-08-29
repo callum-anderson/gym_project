@@ -18,7 +18,7 @@ end
 post '/gym_class' do
   @gym_class = GymClass.new(params)
   @gym_class.save()
-  erb(:gymclass_added)
+  erb :'gym_class/gym_class_added', :layout => :gym_class_layout
 end
 
 delete '/gym_class/:id/delete' do

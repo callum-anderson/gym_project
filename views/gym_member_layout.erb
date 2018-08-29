@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Gym Project</title>
+    <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
     <h2>Welcome to Ur Gym!</h2>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="/gym_member">Show all members</a></li>
       <li><a href="/gym_class">Show all classes</a></li>
       <li><a href="/gym_booking">Show all class bookings</a></li>
@@ -20,14 +21,15 @@
 
 <% all_members = GymMember.view_all() %>
 <% all_members.each do |m| %>
-  <form action="/gym_member/<%= m.id %>" method="post">
+<div class="form-wrapper">
+  <form id="member-update-form" action="/gym_member/<%= m.id %>" method="post">
     <input hidden name="_method" value="put">
-    First name: <input name="first_name" value="<%= m.first_name %>" type="text"><br>
-    Last name: <input name="last_name" value="<%= m.last_name %>" type="text"><br>
-    Age: <input name="age" value="<%= m.age %>" type="number" min="16" max="120"><br>
-    Contact: <input name="contact_number" value="<%= m.contact_number %>" type="text"><br>
-    Email: <input name="email" value="<%= m.email %>" type="email"><br>
-    <input type="submit" value="Update">
+    <label for="first_name">First name:</label><input name="first_name" value="<%= m.first_name %>" type="text">
+    <label for="last_name">Last name:</label><input name="last_name" value="<%= m.last_name %>" type="text">
+    <label for="age">Age:</label><input name="age" value="<%= m.age %>" type="number" min="16" max="120"><br>
+    <label for="contact_number">Contact:</label><input name="contact_number" value="<%= m.contact_number %>" type="text">
+    <label for="email">Email:</label><input name="email" value="<%= m.email %>" type="email">
+    <input class="fix-right" type="submit" value="Update">
   </form>
   <form action="/gym_member/<%= m.id %>/delete" method="post">
     <input hidden name="_method" value="delete">
@@ -54,6 +56,7 @@
     </select>
     <input type="submit" value="Add to class">
   </form>
+</div>
 <% end %>
 
 </body>

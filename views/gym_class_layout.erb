@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Gym Project</title>
+    <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
     <h2>Welcome to Ur Gym!</h2>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="/gym_member">Show all members</a></li>
       <li><a href="/gym_class">Show all classes</a></li>
       <li><a href="/gym_booking">Show all class bookings</a></li>
@@ -20,19 +21,20 @@
 
     <% all_classes = GymClass.view_all() %>
     <% all_classes.each do |c| %>
-      <form action="/gym_class/<%= c.id %>" method="post">
+    <div class="form-wrapper">
+      <form class="clear-left outer-form" action="/gym_class/<%= c.id %>" method="post">
         <input hidden name="_method" value="put">
-        Class: <input name="name" value="<%= c.name %>" type="text"><br>
-        Capacity: <input name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200"><br>
+        Class: <input name="name" value="<%= c.name %>" type="text">
+        Capacity: <input name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200">
         <input type="submit" value="Update">
       </form>
-      <form action="/gym_class/<%= c.id %>/delete" method="post">
+      <form class="mid-right-form mid-form" action="/gym_class/<%= c.id %>/delete" method="post">
         <input hidden name="_method" value="delete">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
         <input type="submit" value="Delete">
       </form>
-      <form action="/gym_booking/class" method="post">
+      <form class="mid-right-form outer-form" action="/gym_booking/class" method="post">
         <input hidden name="_method" value="put">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
@@ -43,8 +45,9 @@
           <option value="<%= m.id %>"><%= m.first_name %> <%= m.last_name %></option>
           <% end %>
         </select>
-        <input type="submit" value="Add member to <%= c.name %> class">
+        <input class="fix-width-btn" type="submit" value="Add member to <%= c.name %> class">
       </form>
+    </div>
     <% end %>
 
   </body>

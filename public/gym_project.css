@@ -1,0 +1,88 @@
+body {
+  background-color: azure;
+}
+#nav-menu {
+  padding: 0;
+}
+#nav-menu li {
+  display: inline;
+}
+#nav-menu a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  margin: 0 5px 0 0;
+  color: #ddd;
+  background-color: #777;
+  border-radius: 5px;
+  border: 2px solid #ededed;
+  width: 14%;
+}
+#nav-menu a:hover {
+  background-color: lightgray;
+  color: #fff;
+}
+form {
+  display: inline-block;
+  margin: 0.5em auto;
+}
+form > input {
+  margin: 0.5em 1em;
+}
+.form-wrapper {
+  position: relative;
+  width: 95%;
+  margin: 0.5em auto;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+input[type=submit]:hover {
+  color: darkgray;
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  cursor: pointer;
+}
+select:hover {
+  cursor: pointer;
+}
+.outer-form {
+  width: 40%;
+}
+#member-update-form {
+  width: 70%;
+}
+#member-update-form input[type=text] {
+  width: 20%;
+}
+#member-update-form input[type=email] {
+  width: 25%;
+}
+#member-update-form label {
+  display: inline-block;
+  width: 10%;
+}
+.clear-left {
+  clear: left;
+}
+.fix-right {
+  float: right;
+}
+#booking-list {
+  display: inline-block;
+  width: 30%;
+  margin: 0;
+}
+#booking-list li {
+  display: inline-block;
+  width: 45%;
+}
+#booking-list-form {
+  width: 10%;
+  margin: 0 auto;
+}
+#booking-list-form input[type=submit] {
+  display: inline-block;
+  float: left;
+  margin: 0;
+}

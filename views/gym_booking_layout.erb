@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Gym Project</title>
+    <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
     <h2>Welcome to Ur Gym!</h2>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="/gym_member">Show all members</a></li>
       <li><a href="/gym_class">Show all classes</a></li>
       <li><a href="/gym_booking">Show all class bookings</a></li>
@@ -20,15 +21,19 @@
 
 <% all_bookings = GymBooking.show_all_bookings() %>
 <% all_bookings.each do |b| %>
-  <form action="/gym_booking/<%= b['id'] %>/delete" method="post">
+<div class="form-wrapper">
+  <ul id="booking-list">
+    <li>Name:<%= b['first_name'] %> <%= b['last_name'] %></li>
+    <li>Class: <%= b['name'] %></li>
+  </ul>
+  <form id="booking-list-form" action="/gym_booking/<%= b['id'] %>/delete" method="post">
     <input hidden name="_method" value="delete">
-    Name: <%= b['first_name'] %> <%= b['last_name'] %><br>
-    Class: <%= b['name'] %><br>
     <input hidden name="first_name" value="<%= b['first_name'] %>">
     <input hidden name="last_name" value="<%= b['last_name'] %>">
     <input hidden name="name" value="<%= b['name'] %>">
     <input type="submit" value="Delete">
   </form>
+</div>
 <% end %>
 
 </body>
