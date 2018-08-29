@@ -39,6 +39,16 @@ class GymClass
     SqlRun.sql_run(sql_string, values)
   end
 
+  def show_assigned_members()
+    sql_string = "SELECT m.first_name, m.last_name FROM members AS m
+                  INNER JOIN gym_bookings AS b
+                  ON m.id = b.member_id
+                  INNER JOIN gym_classes AS c
+                  ON b.gym_class_id = c.id
+                  WHERE c.id = $1"
+    SqlRun.sql_run(sql_string, [@id])
+  end
+
   def self.object_from_db(id)
     sql_string = "SELECT * FROM gym_classes
                   WHERE id = $1"

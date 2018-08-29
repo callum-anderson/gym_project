@@ -86,6 +86,7 @@ select:hover {
   float: left;
   margin: 0;
 }
-#gymclass-list > li, #gymclass-list {
+#gymclass-list > li, #gymclass-list,
+#gymmember-list > li, #gymmember-list {
   display: inline-block;
 }

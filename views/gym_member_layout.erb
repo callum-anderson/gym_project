@@ -58,7 +58,7 @@
   </form>
   <ul id="gymclass-list">Classes assigned:
     <% m.show_bookings.each do |b| %>
-    <li>&nbsp;&bull;&nbsp;<%= b['name'] %></li>
+    <li>&nbsp;&bull;&nbsp;<strong><%= b['name'] %></strong></li>
     <% end %>
   </ul>
 </div>

@@ -47,6 +47,11 @@
         </select>
         <input class="fix-width-btn" type="submit" value="Add member to <%= c.name %> class">
       </form>
+      <ul id="gymmember-list">Members assigned:
+        <% c.show_assigned_members.each do |m| %>
+        <li>&nbsp;&bull;&nbsp;<strong><%= m['first_name'] %> <%= m['last_name'] %></strong></li>
+        <% end %>
+      </ul>
     </div>
     <% end %>
 
