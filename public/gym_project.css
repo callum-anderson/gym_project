@@ -86,3 +86,6 @@ select:hover {
   float: left;
   margin: 0;
 }
+#gymclass-list > li, #gymclass-list {
+  display: inline-block;
+}

@@ -41,6 +41,16 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     SqlRun.sql_run(sql_string, values)
   end
 
+  def show_bookings()
+    sql_string = "SELECT c.name FROM members AS m
+                  INNER JOIN gym_bookings AS b
+                  ON m.id = b.member_id
+                  INNER JOIN gym_classes AS c
+                  ON b.gym_class_id = c.id
+                  WHERE m.id = $1"
+    SqlRun.sql_run(sql_string, [@id])
+  end
+
   def self.object_from_db(id)
     sql_string = "SELECT * FROM members
                   WHERE id = $1"
