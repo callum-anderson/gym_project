@@ -81,4 +81,14 @@ class GymClass
     GymBooking.delete_by_id(booking_id)
   end
 
+  def self.class_full?(gym_class_id)
+    sql_string = "SELECT * FROM gym_classes AS c
+                INNER JOIN gym_bookings AS b
+                ON c.id = b.gym_class_id
+                WHERE c.id = $1"
+    sql_return = SqlRun.sql_run(sql_string, [gym_class_id])
+    return true if sql_return.ntuples >= sql_return.first['capacity'].to_i()
+    return false
+  end
+
 end

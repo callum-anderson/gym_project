@@ -24,6 +24,8 @@ put '/gym_booking/member' do
                                       'member'=>params['id']})
   if new_booking.exists?
     erb :'gym_booking/already_assigned_to_class', :layout => :gym_member_layout
+  elsif GymClass.class_full?(params['gym_class'])
+    erb :'gym_booking/gym_class_full', :layout => :gym_member_layout
   else
     new_booking.save()
     @booking_details = new_booking.show_booking_details()
