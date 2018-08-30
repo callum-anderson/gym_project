@@ -70,17 +70,6 @@ class GymBooking
     return sql_return
   end
 
-  def self.delete_by_id(id)
-    self.object_from_db(id).delete()
-  end
-
-  def self.return_booking_id(gym_class_id, gym_member_id)
-    sql_string = "SELECT id FROM gym_bookings
-                  WHERE gym_class_id = $1 AND member_id = $2"
-    values = [gym_class_id, gym_member_id]
-    return SqlRun.sql_run(sql_string, values)[0]['id'].to_i()
-  end
-
   def self.show_all_bookings()
     sql_string = "SELECT m.first_name, m.last_name, c.name, b.id
                   FROM gym_members AS m INNER JOIN gym_bookings AS b

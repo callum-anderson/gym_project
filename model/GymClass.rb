@@ -64,14 +64,6 @@ class GymClass
     return sql_return
   end
 
-  def self.delete_by_id(id)
-    self.object_from_db(id).delete()
-  end
-
-  def self.show_info_by_id(id)
-    self.object_from_db(id).show_info()
-  end
-
   def self.add_member_by_id(gym_class_id, gym_member_id)
     GymBooking.new({'gym_class' => gym_class_id, 'gym_member' => gym_member_id}).save()
   end
