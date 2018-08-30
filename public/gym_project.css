@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(to left top, aqua, azure) fixed;
+  background: linear-gradient(to left top, aqua, white) fixed;
   margin: 0;
 }
 header {
@@ -152,4 +152,8 @@ select:hover {
 #gymclass-list > li, #gymclass-list,
 #gymmember-list > li, #gymmember-list {
   display: inline-block;
+}
+.error-message {
+  font-weight: bold;
+  color: red;
 }
