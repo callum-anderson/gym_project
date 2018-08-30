@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gym Project</title>
+    <link rel="stylesheet" type="text/css" href="/gym_project.css">
+  </head>
+  <body>
+    <h2>Welcome to Ur Gym!</h2>
+    <ul id="nav-menu">
+      <li><a href="/gym_member">All members</a></li>
+      <li><a href="/gym_class">All classes</a></li>
+      <li><a href="/gym_instructor">All instructors</a></li>
+      <li><a href="/gym_booking">All class bookings</a></li>
+      <li><a href="/gym_member/new">Register member</a></li>
+      <li><a href="/gym_class/new">Add new class</a></li>
+      <li><a href="/gym_instructor/new">Add new instructor</a></li>
+    </ul>
+
+    <%= yield %>
+
+    <hr style="margin: 2em 0; border-width: 2px;">
+
+<% all_instructors = GymInstructor.view_all() %>
+<% all_classes = GymClass.view_all() %>
+<% all_instructors.each do |i| %>
+<div class="form-wrapper">
+  <form id="member-update-form" action="/gym_instructor/<%= i.id %>" method="post">
+    <input hidden name="_method" value="put">
+    <label for="first_name">First name:</label><input name="first_name" value="<%= i.first_name %>" type="text">
+    <label for="last_name">Last name:</label><input name="last_name" value="<%= i.last_name %>" type="text">
+    <input class="fix-right" type="submit" value="Update">
+  </form>
+  <form action="/gym_instructor/<%= i.id %>/delete" method="post">
+    <input hidden name="_method" value="delete">
+    <input hidden name="first_name" value="<%= i.first_name %>">
+    <input hidden name="last_name" value="<%= i.last_name %>">
+    <input type="submit" value="Delete">
+  </form><br>
+  <form action="/gym_booking/class_assign" method="post">
+    <input hidden name="_method" value="put">
+    <input hidden name="first_name" value="<%= i.first_name %>">
+    <input hidden name="last_name" value="<%= i.last_name %>">
+    <input hidden name="id" value="<%= i.id %>">
+    <select name="gym_class">
+      <% all_classes.each do |c| %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+      <% end %>
+    </select>
+    <input type="submit" value="Assign to class">
+  </form>
+  <ul id="gymclass-list">Classes assigned:
+    <% i.show_assignments.each do |a| %>
+    <li>&nbsp;&bull;&nbsp;<strong><%= a['name'] %></strong></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+</body>
+</html>

@@ -3,7 +3,7 @@ require('sinatra/contrib/all')
 require('pry')
 require_relative('../model/GymMember.rb')
 require_relative('../model/GymClass.rb')
-require_relative('../model/GymBooking.rb')
+require_relative('../model/GymInstructor.rb')
 require_relative('../db/sql_runner.rb')
 also_reload('../model/*')
 
@@ -21,9 +21,9 @@ end
 
 put '/gym_booking/member' do
   new_booking = GymBooking.new({'gym_class'=> params['gym_class'],
-                                      'member'=>params['id']})
-  if new_booking.exists?
-    erb :'gym_booking/already_assigned_to_class', :layout => :gym_member_layout
+                                      'gym_member'=>params['id']})
+  if new_booking.booking_exists?
+    erb :'gym_booking/already_booked_to_class', :layout => :gym_member_layout
   elsif GymClass.class_full?(params['gym_class'])
     erb :'gym_booking/gym_class_full', :layout => :gym_member_layout
   else
@@ -34,13 +34,27 @@ put '/gym_booking/member' do
 end
 
 put '/gym_booking/class' do
-  new_booking = GymBooking.new({'gym_class'=> params['id'],
-                                    'member'=>params['member']})
-  if new_booking.exists?
-    erb :'gym_booking/already_assigned_to_class', :layout => :gym_member_layout
+  new_booking = GymBooking.new({'gym_class' => params['id'],
+                                    'gym_member' => params['member']})
+  if new_booking.booking_exists?
+    erb :'gym_booking/already_booked_to_class', :layout => :gym_member_layout
+  elsif GymClass.class_full?(params['id'])
+    erb :'gym_booking/gym_class_full', :layout => :gym_class_layout
   else
     new_booking.save()
     @booking_details = new_booking.show_booking_details()
     erb :'gym_booking/gym_member_added_to_class', :layout => :gym_class_layout
+  end
+end
+
+put '/gym_booking/class_assign' do
+  new_booking = GymBooking.new({'gym_class' => params['gym_class'],
+                                    'gym_instructor' => params['id']})
+  if new_booking.assignment_exists?
+    erb :'gym_booking/already_assigned_to_class', :layout => :gym_member_layout
+  else
+    new_booking.save()
+    @booking_details = new_booking.show_assignment_details()
+    erb :'gym_booking/gym_instructor_assigned_to_class', :layout => :gym_instructor_layout
   end
 end

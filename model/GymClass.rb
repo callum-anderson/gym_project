@@ -40,9 +40,9 @@ class GymClass
   end
 
   def show_assigned_members()
-    sql_string = "SELECT m.first_name, m.last_name FROM members AS m
+    sql_string = "SELECT m.first_name, m.last_name FROM gym_members AS m
                   INNER JOIN gym_bookings AS b
-                  ON m.id = b.member_id
+                  ON m.id = b.gym_member_id
                   INNER JOIN gym_classes AS c
                   ON b.gym_class_id = c.id
                   WHERE c.id = $1"
@@ -72,12 +72,12 @@ class GymClass
     self.object_from_db(id).show_info()
   end
 
-  def self.add_member_by_id(gym_class_id, member_id)
-    GymBooking.new({'gym_class' => gym_class_id, 'member' => member_id}).save()
+  def self.add_member_by_id(gym_class_id, gym_member_id)
+    GymBooking.new({'gym_class' => gym_class_id, 'gym_member' => gym_member_id}).save()
   end
 
-  def self.remove_member_by_id(gym_class_id, member_id)
-    GymBooking.find_booking_id(gym_class_id, member_id)
+  def self.remove_member_by_id(gym_class_id, gym_member_id)
+    GymBooking.find_booking_id(gym_class_id, gym_member_id)
     GymBooking.delete_by_id(booking_id)
   end
 
@@ -87,6 +87,7 @@ class GymClass
                 ON c.id = b.gym_class_id
                 WHERE c.id = $1"
     sql_return = SqlRun.sql_run(sql_string, [gym_class_id])
+    return false if sql_return.ntuples == 0
     return true if sql_return.ntuples >= sql_return.first['capacity'].to_i()
     return false
   end

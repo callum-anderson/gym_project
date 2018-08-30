@@ -1,4 +1,5 @@
 body {
+  padding: 0.8em;
   background-color: azure;
 }
 #nav-menu {
@@ -10,13 +11,13 @@ body {
 #nav-menu a {
   text-decoration: none;
   display: inline-block;
-  padding: 10px;
-  margin: 0 5px 0 0;
+  padding: 5px;
+  margin: 0 3px 0 0;
   color: #ddd;
   background-color: #777;
   border-radius: 5px;
-  border: 2px solid #ededed;
-  width: 14%;
+  border: 1px solid #ededed;
+  width: 11%;
 }
 #nav-menu a:hover {
   background-color: lightgray;

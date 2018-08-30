@@ -8,11 +8,13 @@
   <body>
     <h2>Welcome to Ur Gym!</h2>
     <ul id="nav-menu">
-      <li><a href="/gym_member">Show all members</a></li>
-      <li><a href="/gym_class">Show all classes</a></li>
-      <li><a href="/gym_booking">Show all class bookings</a></li>
-      <li><a href="/gym_member/new">Register new member</a></li>
+      <li><a href="/gym_member">All members</a></li>
+      <li><a href="/gym_class">All classes</a></li>
+      <li><a href="/gym_instructor">All instructors</a></li>
+      <li><a href="/gym_booking">All class bookings</a></li>
+      <li><a href="/gym_member/new">Register member</a></li>
       <li><a href="/gym_class/new">Add new class</a></li>
+      <li><a href="/gym_instructor/new">Add new instructor</a></li>
     </ul>
 
     <%= yield %>
@@ -23,7 +25,7 @@
 <% all_bookings.each do |b| %>
 <div class="form-wrapper">
   <ul id="booking-list">
-    <li>Name:<%= b['first_name'] %> <%= b['last_name'] %></li>
+    <li>Name: <%= b['first_name'] %> <%= b['last_name'] %></li>
     <li>Class: <%= b['name'] %></li>
   </ul>
   <form id="booking-list-form" action="/gym_booking/<%= b['id'] %>/delete" method="post">
