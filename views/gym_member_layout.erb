@@ -27,9 +27,9 @@
 <div class="form-wrapper">
   <form id="member-update-form" action="/gym_member/<%= m.id %>" method="post">
     <input hidden name="_method" value="put">
-    <label for="first_name">First name:</label><input name="first_name" value="<%= m.first_name %>" type="text">
-    <label for="last_name">Last name:</label><input name="last_name" value="<%= m.last_name %>" type="text">
-    <label for="age">Age:</label><input name="age" value="<%= m.age %>" type="number" min="16" max="120"><br>
+    <label for="first_name">First name:</label><input required name="first_name" value="<%= m.first_name %>" type="text">
+    <label for="last_name">Last name:</label><input required name="last_name" value="<%= m.last_name %>" type="text">
+    <label for="age">Age:</label><input required name="age" value="<%= m.age %>" type="number" min="16" max="120"><br>
     <label for="contact_number">Contact:</label><input name="contact_number" value="<%= m.contact_number %>" type="text">
     <label for="email">Email:</label><input name="email" value="<%= m.email %>" type="email">
     <input class="fix-right" type="submit" value="Update">

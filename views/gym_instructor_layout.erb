@@ -27,8 +27,8 @@
 <div class="form-wrapper">
   <form id="member-update-form" action="/gym_instructor/<%= i.id %>" method="post">
     <input hidden name="_method" value="put">
-    <label for="first_name">First name:</label><input name="first_name" value="<%= i.first_name %>" type="text">
-    <label for="last_name">Last name:</label><input name="last_name" value="<%= i.last_name %>" type="text">
+    <label for="first_name">First name:</label><input required name="first_name" value="<%= i.first_name %>" type="text">
+    <label for="last_name">Last name:</label><input required name="last_name" value="<%= i.last_name %>" type="text">
     <input class="fix-right" type="submit" value="Update">
   </form>
   <form action="/gym_instructor/<%= i.id %>/delete" method="post">

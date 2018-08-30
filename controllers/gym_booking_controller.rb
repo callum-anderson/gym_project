@@ -51,7 +51,7 @@ put '/gym_booking/class_assign' do
   new_booking = GymBooking.new({'gym_class' => params['gym_class'],
                                     'gym_instructor' => params['id']})
   if new_booking.assignment_exists?
-    erb :'gym_booking/already_assigned_to_class', :layout => :gym_member_layout
+    erb :'gym_booking/already_assigned_to_class', :layout => :gym_instructor_layout
   else
     new_booking.save()
     @booking_details = new_booking.show_assignment_details()

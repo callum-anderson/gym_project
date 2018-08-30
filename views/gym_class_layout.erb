@@ -26,8 +26,8 @@
     <div class="form-wrapper">
       <form class="clear-left outer-form" action="/gym_class/<%= c.id %>" method="post">
         <input hidden name="_method" value="put">
-        Class: <input name="name" value="<%= c.name %>" type="text">
-        Capacity: <input name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200">
+        Class: <input required name="name" value="<%= c.name %>" type="text">
+        Capacity: <input required name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200">
         <input type="submit" value="Update">
       </form>
       <form class="mid-right-form mid-form" action="/gym_class/<%= c.id %>/delete" method="post">
