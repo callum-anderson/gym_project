@@ -1,9 +1,36 @@
 body {
-  padding: 0.8em;
-  background-color: azure;
+  background: linear-gradient(to left top, aqua, azure) fixed;
+  margin: 0;
+}
+header {
+  margin: 0;
+  height: 16vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(0,0,0,0.8)
+}
+#title-bar {
+  margin: 0.5em auto 0;
+  width: 85%;
+  text-transform: uppercase;
+  color: azure;
+  font-family: verdana, sans-serif;
+}
+#title-bar:before {
+  content:"Ʋ ";
+  color: darkgray;
+  font-size: 1.2em;
+  text-shadow: 1px 1px lightgray;
 }
 #nav-menu {
-  padding: 0;
+  padding: 1em;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 #nav-menu li {
   display: inline;
@@ -11,47 +38,82 @@ body {
 #nav-menu a {
   text-decoration: none;
   display: inline-block;
-  padding: 5px 0 5px 8px;
-  margin: 0 5px 0 0;
-  color: #ddd;
-  background-color: #777;
+  padding: 8px;
+  color: black;
+  background-color: azure;
   border-radius: 5px;
-  border: 1px solid #ededed;
-  width: 11%;
+  border: 2px solid lightgray;
+  font-family: verdana, sans-serif;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 #nav-menu a:hover {
-  background-color: lightgray;
-  color: #fff;
+  color: darkgray;
+  border: 2px solid darkgray;
+  background: radial-gradient(lightcyan, white)
+}
+#action-window {
+  width: 90%;
+  margin: 1em auto;
+  padding: 0.3em 0 0 0;
+  height: 4vh;
+  border: 2px solid darkgray;
+  border-radius: 5px;
+  background-color: azure;
+}
+#action-window > p {
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+}
+#content {
+  margin: 20vh 1em 0;
 }
 form {
+  font-family: verdana, sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
   display: inline-block;
   margin: 0.5em auto;
 }
+.new-form {
+  display: block;
+  width: 70%;
+  margin: 1em auto;
+}
+input, select, label {
+  font-family: inherit;
+  font-size: inherit;
+}
+label, input[type=submit] {
+  text-transform: inherit;
+}
 form > input {
-  margin: 0.5em 1em;
+  margin: 0.5em;
+}
+input[type=submit] {
+  font-size: 1.4em;
 }
 .form-wrapper {
   position: relative;
   width: 95%;
   margin: 0.5em auto;
-  background-color: lightgray;
+  background-color: azure;
   border-radius: 5px;
-  padding: 0.5em;
+  border: 2px solid lightgray;
+  padding: 0.5em 2em;
 }
 input[type=submit]:hover {
   color: darkgray;
-  border: 1px solid darkgray;
-  border-radius: 4px;
   cursor: pointer;
 }
 select:hover {
+  color: darkgray;
   cursor: pointer;
 }
-.outer-form {
-  width: 40%;
-}
 #member-update-form {
-  width: 70%;
+  width: 80%;
 }
 #member-update-form input[type=text] {
   width: 20%;
@@ -61,7 +123,7 @@ select:hover {
 }
 #member-update-form label {
   display: inline-block;
-  width: 10%;
+  width: 12%;
 }
 .clear-left {
   clear: left;

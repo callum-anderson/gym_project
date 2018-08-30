@@ -37,7 +37,7 @@ put '/gym_booking/class' do
   new_booking = GymBooking.new({'gym_class' => params['id'],
                                     'gym_member' => params['member']})
   if new_booking.booking_exists?
-    erb :'gym_booking/already_booked_to_class', :layout => :gym_member_layout
+    erb :'gym_booking/already_booked_to_class', :layout => :gym_class_layout
   elsif GymClass.class_full?(params['id'])
     erb :'gym_booking/gym_class_full', :layout => :gym_class_layout
   else

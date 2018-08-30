@@ -6,20 +6,20 @@
     <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
-    <h2>Welcome to Ur Gym!</h2>
-    <ul id="nav-menu">
-      <li><a href="/gym_member">All members</a></li>
-      <li><a href="/gym_class">All classes</a></li>
-      <li><a href="/gym_instructor">All instructors</a></li>
-      <li><a href="/gym_booking">All class bookings</a></li>
-      <li><a href="/gym_member/new">Register member</a></li>
-      <li><a href="/gym_class/new">Add new class</a></li>
-      <li><a href="/gym_instructor/new">Add new instructor</a></li>
-    </ul>
-
+    <header>
+      <h2 id="title-bar">Ur Gym</h2>
+      <ul id="nav-menu">
+        <li><a href="/gym_member">All members</a></li>
+        <li><a href="/gym_class">All classes</a></li>
+        <li><a href="/gym_instructor">All instructors</a></li>
+        <li><a href="/gym_booking">All class bookings</a></li>
+        <li><a href="/gym_member/new">Register member</a></li>
+        <li><a href="/gym_class/new">Add new class</a></li>
+        <li><a href="/gym_instructor/new">Add new instructor</a></li>
+      </ul>
+  </header>
+  <div id="content">
     <%= yield %>
-
-    <hr style="margin: 2em 0; border-width: 2px;">
 
 <% all_members = GymMember.view_all() %>
 <% all_classes = GymClass.view_all() %>
@@ -65,6 +65,6 @@
   </ul>
 </div>
 <% end %>
-
+</div>
 </body>
 </html>

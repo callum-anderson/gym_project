@@ -6,27 +6,27 @@
     <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
-    <h2>Welcome to Ur Gym!</h2>
-    <ul id="nav-menu">
-      <li><a href="/gym_member">All members</a></li>
-      <li><a href="/gym_class">All classes</a></li>
-      <li><a href="/gym_instructor">All instructors</a></li>
-      <li><a href="/gym_booking">All class bookings</a></li>
-      <li><a href="/gym_member/new">Register member</a></li>
-      <li><a href="/gym_class/new">Add new class</a></li>
-      <li><a href="/gym_instructor/new">Add new instructor</a></li>
-    </ul>
-
+    <header>
+      <h2 id="title-bar">Ur Gym</h2>
+      <ul id="nav-menu">
+        <li><a href="/gym_member">All members</a></li>
+        <li><a href="/gym_class">All classes</a></li>
+        <li><a href="/gym_instructor">All instructors</a></li>
+        <li><a href="/gym_booking">All class bookings</a></li>
+        <li><a href="/gym_member/new">Register member</a></li>
+        <li><a href="/gym_class/new">Add new class</a></li>
+        <li><a href="/gym_instructor/new">Add new instructor</a></li>
+      </ul>
+  </header>
+    <div id="content">
     <%= yield %>
-
-<hr style="margin: 2em 0; border-width: 2px;">
 
 <% all_bookings = GymBooking.show_all_bookings() %>
 <% all_bookings.each do |b| %>
 <div class="form-wrapper">
   <ul id="booking-list">
-    <li>Name: <%= b['first_name'] %> <%= b['last_name'] %></li>
-    <li>Class: <%= b['name'] %></li>
+    <li>Name: <strong><%= b['first_name'] %> <%= b['last_name'] %></strong></li>
+    <li>Class: <strong><%= b['name'] %></strong></li>
   </ul>
   <form id="booking-list-form" action="/gym_booking/<%= b['id'] %>/delete" method="post">
     <input hidden name="_method" value="delete">
@@ -37,6 +37,6 @@
   </form>
 </div>
 <% end %>
-
+</div>
 </body>
 </html>

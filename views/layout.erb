@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
-    <h2>Welcome to Ur Gym!</h2>
+    <header>
+    <h2 id="title-bar">Ur Gym</h2>
     <ul id="nav-menu">
       <li><a href="/gym_member">All members</a></li>
       <li><a href="/gym_class">All classes</a></li>
@@ -16,6 +17,9 @@
       <li><a href="/gym_class/new">Add new class</a></li>
       <li><a href="/gym_instructor/new">Add new instructor</a></li>
     </ul>
+  </header>
+  <div id="content">
     <%= yield %>
+  </div>
   </body>
 </html>

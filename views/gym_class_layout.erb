@@ -6,25 +6,25 @@
     <link rel="stylesheet" type="text/css" href="/gym_project.css">
   </head>
   <body>
-    <h2>Welcome to Ur Gym!</h2>
-    <ul id="nav-menu">
-      <li><a href="/gym_member">All members</a></li>
-      <li><a href="/gym_class">All classes</a></li>
-      <li><a href="/gym_instructor">All instructors</a></li>
-      <li><a href="/gym_booking">All class bookings</a></li>
-      <li><a href="/gym_member/new">Register member</a></li>
-      <li><a href="/gym_class/new">Add new class</a></li>
-      <li><a href="/gym_instructor/new">Add new instructor</a></li>
-    </ul>
-
+    <header>
+      <h2 id="title-bar">Ur Gym</h2>
+        <ul id="nav-menu">
+          <li><a href="/gym_member">All members</a></li>
+          <li><a href="/gym_class">All classes</a></li>
+          <li><a href="/gym_instructor">All instructors</a></li>
+          <li><a href="/gym_booking">All class bookings</a></li>
+          <li><a href="/gym_member/new">Register member</a></li>
+          <li><a href="/gym_class/new">Add new class</a></li>
+          <li><a href="/gym_instructor/new">Add new instructor</a></li>
+        </ul>
+  </header>
+    <div id="content">
     <%= yield %>
-
-    <hr style="margin: 2em 0; border-width: 2px;">
 
     <% all_classes = GymClass.view_all() %>
     <% all_classes.each do |c| %>
     <div class="form-wrapper">
-      <form class="clear-left outer-form" action="/gym_class/<%= c.id %>" method="post">
+      <form class="clear-left" action="/gym_class/<%= c.id %>" method="post">
         <input hidden name="_method" value="put">
         Class: <input required name="name" value="<%= c.name %>" type="text">
         Capacity: <input required name="capacity" value="<%= c.capacity %>" type="number" min="1" max="200">
@@ -36,7 +36,7 @@
         <input hidden name="capacity" value="<%= c.capacity %>">
         <input type="submit" value="Delete">
       </form>
-      <form class="mid-right-form outer-form" action="/gym_booking/class" method="post">
+      <form class="mid-right-form" action="/gym_booking/class" method="post">
         <input hidden name="_method" value="put">
         <input hidden name="name" value="<%= c.name %>">
         <input hidden name="capacity" value="<%= c.capacity %>">
@@ -48,7 +48,7 @@
           <% end %>
         </select>
         <input class="fix-width-btn" type="submit" value="Add member to <%= c.name %> class">
-      </form>
+      </form><br>
       <ul id="gymmember-list">Members assigned:
         <% c.show_assigned_members.each do |m| %>
         <li>&nbsp;&bull;&nbsp;<strong><%= m['first_name'] %> <%= m['last_name'] %></strong></li>
@@ -56,6 +56,6 @@
       </ul>
     </div>
     <% end %>
-
+</div>
   </body>
 </html>
