@@ -1,1 +1,7 @@
-<p>Site under construction - launch date 31/08/18</p>
+<% all_instructors_count = GymInstructor.view_all().length %>
+<% all_members_count = GymMember.view_all().length %>
+<% all_classes_count = GymClass.view_all().length %>
+<h2>Welcome to Ur Gym Management Portal!</h2>
+<p>Current member count: <strong><%= all_members_count%></strong></p>
+<p>Current class count: <strong><%= all_classes_count%></strong></p>
+<p>Current instructor count: <strong><%= all_instructors_count%></strong></p>

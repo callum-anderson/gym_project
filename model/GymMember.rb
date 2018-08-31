@@ -25,13 +25,24 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     SqlRun.sql_run(sql_string, values)
   end
 
-  def show_info()
-    sql_string = "SELECT * FROM gym_members
-                  WHERE id = $1"
+  def show_bookings()
+    sql_string = "SELECT * FROM gym_members AS m
+                  INNER JOIN gym_bookings AS b
+                  ON m.id = b.gym_member_id
+                  INNER JOIN gym_classes AS c
+                  ON b.gym_class_id = c.id
+                  WHERE m.id = $1"
     values = [@id]
-    sql_return = SqlRun.sql_run(sql_string, values)
-    return sql_return[0]
+    SqlRun.sql_run(sql_string, values)
   end
+
+  # def show_info()
+  #   sql_string = "SELECT * FROM gym_members
+  #                 WHERE id = $1"
+  #   values = [@id]
+  #   sql_return = SqlRun.sql_run(sql_string, values)
+  #   return sql_return[0]
+  # end
 
   def update()
     sql_string = "UPDATE gym_members
@@ -41,27 +52,19 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     SqlRun.sql_run(sql_string, values)
   end
 
-  def show_bookings()
-    sql_string = "SELECT c.name FROM gym_members AS m
-                  INNER JOIN gym_bookings AS b
-                  ON m.id = b.gym_member_id
-                  INNER JOIN gym_classes AS c
-                  ON b.gym_class_id = c.id
-                  WHERE m.id = $1"
-    SqlRun.sql_run(sql_string, [@id])
-  end
 
-  def self.object_from_db(id)
-    sql_string = "SELECT * FROM gym_members
-                  WHERE id = $1"
-    values = [id]
-    sql_return = GymMember.new(SqlRun.sql_run(sql_string, values)[0])
-    return sql_return
-  end
 
-  def self.delete_by_id(id)
-    self.object_from_db(id).delete()
-  end
+  # def self.object_from_db(id)
+  #   sql_string = "SELECT * FROM gym_members
+  #                 WHERE id = $1"
+  #   values = [id]
+  #   sql_return = GymMember.new(SqlRun.sql_run(sql_string, values)[0])
+  #   return sql_return
+  # end
+  #
+  # def self.delete_by_id(id)
+  #   self.object_from_db(id).delete()
+  # end
 
   def self.view_all()
     sql_string = "SELECT * FROM gym_members
@@ -69,8 +72,8 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     sql_return = SqlRun.sql_run(sql_string).map{|m|GymMember.new(m)}
   end
 
-  def self.show_info_by_id(id)
-    self.object_from_db(id).show_info()
-  end
+  # def self.show_info_by_id(id)
+  #   self.object_from_db(id).show_info()
+  # end
 
 end

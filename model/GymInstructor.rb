@@ -21,12 +21,12 @@ attr_accessor('first_name', 'last_name')
     SqlRun.sql_run(sql_string, [@id])
   end
 
-  def show_info()
-    sql_string = "SELECT * FROM gym_instructors
-                  WHERE id = $1"
-    sql_return = SqlRun.sql_run(sql_string, [@id])
-    return sql_return[0]
-  end
+  # def show_info()
+  #   sql_string = "SELECT * FROM gym_instructors
+  #                 WHERE id = $1"
+  #   sql_return = SqlRun.sql_run(sql_string, [@id])
+  #   return sql_return[0]
+  # end
 
   def update()
     sql_string = "UPDATE gym_instructors
