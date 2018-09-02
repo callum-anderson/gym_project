@@ -77,7 +77,7 @@ class GymClass
     sql_string = "SELECT * FROM gym_classes AS c
                 INNER JOIN gym_bookings AS b
                 ON c.id = b.gym_class_id
-                WHERE c.id = $1"
+                WHERE c.id = $1 AND b.gym_member_id IS NOT NULL"
     sql_return = SqlRun.sql_run(sql_string, [gym_class_id])
     return false if sql_return.ntuples == 0
     return true if sql_return.ntuples >= sql_return.first['capacity'].to_i()
