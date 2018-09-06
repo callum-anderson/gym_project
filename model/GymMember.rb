@@ -36,14 +36,6 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     SqlRun.sql_run(sql_string, values)
   end
 
-  # def show_info()
-  #   sql_string = "SELECT * FROM gym_members
-  #                 WHERE id = $1"
-  #   values = [@id]
-  #   sql_return = SqlRun.sql_run(sql_string, values)
-  #   return sql_return[0]
-  # end
-
   def update()
     sql_string = "UPDATE gym_members
                   SET (first_name, last_name, age, contact_number, email)
@@ -52,28 +44,10 @@ attr_accessor('first_name', 'last_name', 'age', 'contact_number', 'email')
     SqlRun.sql_run(sql_string, values)
   end
 
-
-
-  # def self.object_from_db(id)
-  #   sql_string = "SELECT * FROM gym_members
-  #                 WHERE id = $1"
-  #   values = [id]
-  #   sql_return = GymMember.new(SqlRun.sql_run(sql_string, values)[0])
-  #   return sql_return
-  # end
-  #
-  # def self.delete_by_id(id)
-  #   self.object_from_db(id).delete()
-  # end
-
   def self.view_all()
     sql_string = "SELECT * FROM gym_members
                   ORDER BY last_name"
     sql_return = SqlRun.sql_run(sql_string).map{|m|GymMember.new(m)}
   end
-
-  # def self.show_info_by_id(id)
-  #   self.object_from_db(id).show_info()
-  # end
 
 end
