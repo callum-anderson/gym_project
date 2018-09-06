@@ -1,10 +1,10 @@
 require('sinatra')
-require('sinatra/contrib/all')
+require('sinatra/contrib/all') if development?
 require_relative('../model/GymMember.rb')
 require_relative('../model/GymClass.rb')
 require_relative('../model/GymInstructor.rb')
 require_relative('../db/sql_runner.rb')
-also_reload('../model/*')
+# also_reload('../model/*')
 
 get '/gym_booking' do
   erb :'gym_booking/index', :layout => :gym_booking_layout
